@@ -1,0 +1,31 @@
+db server: TJV/derby_10.13.1.1/bin/startNetworkServer
+
+
+create TABLE book (
+         name varchar(255) not null ,
+         price double not null,
+         primary key (name)
+     )
+create TABLE customer (
+         login varchar(255) not null ,
+         name varchar(255) not null ,
+         surname varchar(255) not null ,
+         primary key (login)
+     )
+create TABLE storage (
+         name varchar(255) not null ,
+         location varchar(255) not null ,
+         primary key (name)
+     )
+create TABLE storage_book (
+         storage_name varchar(255) not null ,
+         book_name varchar(255) not null ,
+         foreign key (storage_name) REFERENCES STORAGE(NAME),
+         foreign key (book_name) REFERENCES BOOK(NAME)
+     )
+create TABLE customer_book (
+         customer_login varchar(255) not null ,
+         book_name varchar(255) not null ,
+         foreign key (customer_login) REFERENCES CUSTOMER(LOGIN),
+         foreign key (book_name) REFERENCES BOOK(NAME)
+     )
